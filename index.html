@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    <title>Interactive Card Form</title>
+  </head>
+  <body class="bg-white">
+    <main class="space-y-28 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:min-h-screen">
+        <div class="relative h-72 bg-bg-mobile bg-cover lg:h-full lg:bg-bg-desktop lg:col-span-1">
+            <div class="absolute right-4 sm:right-20 top-12 w-4/5 sm:w-2/4 lg:w-full lg:left-1/2 lg:top-1/2 h-48 lg:h-60 bg-gray-200 rounded-lg shadow-md">
+                <div class="mt-4 md:mt-6 h-1/5 bg-stone-800"></div>
+                <div class="mt-6 md:mt-8 w-4/5 h-8 mx-auto bg-gray-400 rounded text-white flex items-center justify-end">
+                    <div id="card-cvc" class="mr-4 text-sm">000</div>
+                </div>
+                <div class="mt-8 w-1/2 mx-auto space-y-2">
+                    <div class="flex gap-x-1">
+                        <span class="w-1/2 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/5 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/5 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/12 h-1 bg-gray-400 rounded"></span>
+                    </div>
+                    <div class="w-4/5 mx-auto flex gap-x-1">
+                        <span class="w-1/6 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/3 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/3 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/12 h-1 bg-gray-400 rounded"></span>
+                    </div>
+                    <div class="flex gap-x-1">
+                        <span class="w-1/12 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/5 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/5 h-1 bg-gray-400 rounded"></span>
+                        <span class="w-1/2 h-1 bg-gray-400 rounded"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute left-4 sm:left-20 -bottom-14 w-4/5 sm:w-2/4 lg:w-full lg:left-1/3 lg:top-[15%] h-48 lg:h-60 bg-card-front bg-cover bg-right-top rounded-lg shadow-md">
+                <div class="p-6 h-full flex flex-col justify-between">
+                    <div class="flex gap-x-4 items-center">
+                        <div class="h-12 w-12 rounded-full bg-white"></div>
+                        <div class="h-6 w-6 rounded-full border-white border-2"></div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex gap-x-4 text-white tracking-tighter">
+                            <div>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                            </div>
+                            <div>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                            </div>
+                            <div>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                            </div>
+                            <div>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                                <span class="card-num text-lg xl:text-2xl">0</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-white">
+                            <div id="cardholder-name" class="text-sm xl:text-base uppercase tracking-widest">Cardholder Name</div>
+                            <div>
+                                <span id="card-exp-month" class="text-sm xl:text-base">00</span>
+                                <span class="text-sm xl:text-base">/</span>
+                                <span id="card-exp-year" class="text-sm xl:text-base">00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" class="w-11/12 sm:w-9/12 mx-auto space-y-8 lg:col-span-2 lg:w-6/12 xl:w-5/12 lg:self-center">
+            <div class="flex flex-col gap-y-2">
+                <label for="holdername" class="uppercase text-sm tracking-widest text-dark-violet">Cardholder Name</label>
+                <input
+                    type="text" name="holdername" id="holdername" placeholder="e.g. Jane Appleseed"
+                    class="max-w-full border-light-gray rounded-md text-lg text-dark-violet placeholder:text-dark-gray focus:border-gradient-2 focus:ring-0"
+                >
+                <div id="name-error" class="text-error text-xs invisible">Can't be blank</div>
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <label for="number" class="uppercase text-sm tracking-widest text-dark-violet">Card Number</label>
+                <input
+                    type="text" name="number" id="number" placeholder="e.g. 1234 5678 9123 0000"
+                    maxlength="16"
+                    class="max-w-full border-light-gray rounded-md text-lg text-dark-violet placeholder:text-dark-gray focus:border-gradient-2 focus:ring-0"
+                >
+                <div id="number-error" class="text-error text-xs invisible">Can't be blank</div>
+            </div>
+            <div class="grid grid-cols-4 gap-x-4 items-center">
+                <div class="col-span-2 space-y-2 self-stretch">
+                    <label for="exp" class="uppercase text-sm tracking-widest text-dark-violet">Exp. Date (MM/YY)</label>
+                    <div class="grid grid-cols-2 gap-x-2">
+                        <input
+                            type="text" name="exp-month" id="exp" placeholder="MM"
+                            maxlength="2"
+                            class="max-w-full border-light-gray rounded-md text-lg text-dark-violet placeholder:text-dark-gray focus:border-gradient-2 focus:ring-0"
+                        >
+
+                        <input
+                            type="text" name="exp-year" id="exp" placeholder="YY"
+                            maxlength="2"
+                            class="max-w-full border-light-gray rounded-md text-lg text-dark-violet placeholder:text-dark-gray focus:border-gradient-2 focus:ring-0"
+                        >
+                    </div>
+                    <div id="exp-month-error" class="text-error text-xs invisible">Can't be blank</div>
+                    <div id="exp-year-error" class="text-error text-xs invisible">Can't be blank</div>
+                </div>
+                <div class="col-span-2 space-y-2 self-stretch">
+                    <label for="cvc" class="block uppercase text-sm tracking-widest text-dark-violet">cvc</label>
+                    <input
+                        type="text" name="cvc" id="cvc" placeholder="e.g. 123"
+                        maxlength="3"
+                        class="min-w-full max-w-full border-light-gray rounded-md text-lg text-dark-violet placeholder:text-dark-gray focus:border-gradient-2 focus:ring-0"
+                    >
+                    <div id="cvc-error" class="text-error text-xs invisible">Can't be blank</div>
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-dark-violet rounded-md py-3 text-white text-lg">Confirm</button>
+        </form>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
